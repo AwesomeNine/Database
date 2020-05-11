@@ -1,0 +1,26 @@
+{
+	"name": "awesome9/database",
+	"description": "An expressive WordPress SQL query builder.",
+	"type": "library",
+	"license": "GPL-3.0-or-later",
+	"authors": [
+		{
+			"name": "Awesome9",
+			"email": "me@awesome9.co"
+		}
+	],
+	"require": {
+		"php": ">=5.6"
+	},
+	"require-dev": {
+	},
+	"config": {
+		"optimize-autoloader": true
+	},
+	"autoload": {
+		"psr-4" : {
+			"Awesome9\\Database\\" : "src"
+		},
+		"classmap" : [ "src/" ]
+	}
+}
