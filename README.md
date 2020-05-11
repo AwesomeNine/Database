@@ -7,7 +7,7 @@
 [![License](https://poser.pugx.org/awesome9/database/license)](https://packagist.org/packages/awesome9/database)
 
 <p align="center">
-	<img src="https://img.icons8.com/nolan/256/stocks.png" />
+	<img src="https://img.icons8.com/nolan/256/database.png"/>
 </p>
 
 ## 📃 About Database
