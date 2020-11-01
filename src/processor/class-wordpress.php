@@ -50,20 +50,6 @@ class WordPress implements Processor {
 	}
 
 	/**
-	 * Translate the given query object and return the results
-	 *
-	 * @param  string $query Database query.
-	 * @param  string $output (Optional) Any of ARRAY_A | ARRAY_N | OBJECT | OBJECT_K constants.
-	 * @return mixed
-	 */
-	public function one( $query, $output = \OBJECT ) {
-		global $wpdb;
-
-		$this->last_query = $query;
-		return $wpdb->get_row( $this->last_query, $output ); // phpcs:ignore
-	}
-
-	/**
 	 * Translate the given query object and return one variable from the database
 	 *
 	 * @param  string $query Database query.

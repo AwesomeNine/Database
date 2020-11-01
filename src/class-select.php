@@ -9,13 +9,13 @@
 
 namespace Awesome9\Database;
 
-use Awesome9\Database\Query\Where;
 use Awesome9\Database\Interfaces\Query;
+use Awesome9\Database\Query\Select as SelectBase;
 
 /**
  * Select class.
  */
-class Select extends Where implements Query {
+class Select extends SelectBase implements Query {
 
 	/**
 	 * Make a distinct selection
@@ -102,7 +102,7 @@ class Select extends Where implements Query {
 
 		// Build the group by statements.
 		if ( ! empty( $this->groups ) ) {
-			$build[] = 'group by ' . join( ', ', $this->groups );
+			$build[] = 'GROUP BY ' . join( ', ', $this->groups );
 
 			if ( ! empty( $this->having ) ) {
 				$build[] = $this->having;
@@ -111,7 +111,7 @@ class Select extends Where implements Query {
 
 		// Build the order statement.
 		if ( ! empty( $this->orders ) ) {
-			$build[] = $this->translateOrderBy();
+			$build[] = $this->get_order_clauses();
 		}
 
 		// Build offset and limit.

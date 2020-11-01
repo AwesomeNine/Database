@@ -473,7 +473,7 @@ class Where extends Base {
 	 * @param  string $type     The where type ( and, or ).
 	 * @return string
 	 */
-	private function generate_where( $column, $operator, $value, $type = 'AND' ) {
+	protected function generate_where( $column, $operator, $value, $type = 'AND' ) {
 		if ( is_array( $value ) ) {
 			$value = $this->esc_array( array_unique( $value ) );
 			$value = in_array( $operator, array( 'BETWEEN', 'NOT BETWEEN' ), true )
