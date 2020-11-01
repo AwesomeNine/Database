@@ -19,7 +19,7 @@ class TestWhereQuery extends UnitTestCase {
 	 */
 	public function test_instance() {
 		$table = $this->create_builder();
-		$this->assertInstanceOf( '\Awesome9\Database\SELECT', $table );
+		$this->assertInstanceOf( '\Awesome9\Database\Select', $table );
 	}
 
 	/**

@@ -9,10 +9,13 @@
 
 namespace Awesome9\Database;
 
+use Awesome9\Database\Query\Base;
+use Awesome9\Database\Interfaces\Query;
+
 /**
  * Insert class.
  */
-class Insert extends Query {
+class Insert extends Base implements Query {
 
 	/**
 	 * Set values for insert/update
@@ -39,7 +42,7 @@ class Insert extends Query {
 	 *
 	 * @return string
 	 */
-	public function translate() {
+	public function get_query() {
 		$build = [ 'INSERT INTO ' . $this->get_table() ];
 
 		$build[] = '(' . join( ', ', array_keys( $this->values ) ) . ')';

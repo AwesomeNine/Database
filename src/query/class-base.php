@@ -85,6 +85,15 @@ class Base {
 	}
 
 	/**
+	 * Execute query.
+	 *
+	 * @return mixed
+	 */
+	public function execute() {
+		return $this->processor->query( $this->get_query() );
+	}
+
+	/**
 	 * Set values for insert/update
 	 *
 	 * @param string|array $name  Key of pair.

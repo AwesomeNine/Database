@@ -10,7 +10,7 @@
 namespace Awesome9\Database;
 
 use Awesome9\Database\Query\Where;
-use Awesome9\Database\Interface\Query;
+use Awesome9\Database\Interfaces\Query;
 
 /**
  * Delete class.
@@ -36,14 +36,5 @@ class Delete extends Where implements Query {
 		}
 
 		return join( ' ', $build );
-	}
-
-	/**
-	 * Execute query.
-	 *
-	 * @return mixed
-	 */
-	public function execute() {
-		return $this->processor->query( $this->get_query() );
 	}
 }

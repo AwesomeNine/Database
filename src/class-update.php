@@ -9,17 +9,20 @@
 
 namespace Awesome9\Database;
 
+use Awesome9\Database\Query\Where;
+use Awesome9\Database\Interfaces\Query;
+
 /**
  * Update class.
  */
-class Update extends WhereQuery {
+class Update extends Where implements Query {
 
 	/**
 	 * Translate the current query to a SQL update statement
 	 *
 	 * @return string
 	 */
-	public function translate() {
+	public function get_query() {
 		$build = [ 'UPDATE ' . $this->get_table() . ' SET' ];
 
 		if ( ! empty( $this->values ) ) {

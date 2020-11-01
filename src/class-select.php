@@ -9,10 +9,13 @@
 
 namespace Awesome9\Database;
 
+use Awesome9\Database\Query\Where;
+use Awesome9\Database\Interfaces\Query;
+
 /**
  * Select class.
  */
-class Select extends WhereQuery {
+class Select extends Where implements Query {
 
 	/**
 	 * Make a distinct selection
@@ -62,11 +65,20 @@ class Select extends WhereQuery {
 	}
 
 	/**
+	 * Get found rows.
+	 *
+	 * @return int
+	 */
+	public function get_found_rows() {
+		return $this->processor->var( 'SELECT FOUND_ROWS();' );
+	}
+
+	/**
 	 * Translate the current query to a SQL select statement
 	 *
 	 * @return string
 	 */
-	public function translate() {
+	public function get_query() {
 		$build = array( 'SELECT' );
 
 		if ( $this->found_rows ) {

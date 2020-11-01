@@ -3,11 +3,11 @@
  * The Query interface.
  *
  * @since   1.0.0
- * @package Awesome9\Database\Interface
+ * @package Awesome9\Database\Interfaces
  * @author  Awesome9 <me@awesome9.co>
  */
 
-namespace Awesome9\Database\Interface;
+namespace Awesome9\Database\Interfaces;
 
 /**
  * Query class.
@@ -20,11 +20,4 @@ interface Query {
 	 * @return string
 	 */
 	public function get_query();
-
-	/**
-	 * Execute query.
-	 *
-	 * @return string
-	 */
-	public function execute();
 }

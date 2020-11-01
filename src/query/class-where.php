@@ -133,7 +133,7 @@ class Where extends Base {
 	 * @return $this
 	 */
 	protected function where_nested( Closure $callback, $type = 'and' ) {
-		$query = new WhereQuery( uniqid( 'nested-' ), $this->table, $this->alias );
+		$query = new Where( uniqid( 'nested-' ), $this->table, $this->alias );
 		call_user_func( $callback, $query );
 
 		if ( ! empty( $this->wheres ) ) {
