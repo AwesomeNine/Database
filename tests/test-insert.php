@@ -29,14 +29,14 @@ class InsertQuery extends UnitTestCase {
 
 		// Simple.
 		$this->assertQueryTranslation(
-			"INSERT INTO phpunit (foo) VALUES ('bar')",
+			"INSERT INTO wptests_phpunit (foo) VALUES ('bar')",
 			function( $table ) {
 				$table->set( 'foo', 'bar' );
 			}
 		);
 
 		$this->assertQueryTranslation(
-			"INSERT INTO phpunit (foo) VALUES (1)",
+			"INSERT INTO wptests_phpunit (foo) VALUES (1)",
 			function( $table ) {
 				$table->set( 'foo', 1 );
 			}
@@ -44,7 +44,7 @@ class InsertQuery extends UnitTestCase {
 
 		// Multiple.
 		$this->assertQueryTranslation(
-			"INSERT INTO phpunit (foo, bar) VALUES ('bar', 'foo')",
+			"INSERT INTO wptests_phpunit (foo, bar) VALUES ('bar', 'foo')",
 			function( $table ) {
 				$table
 				->set( 'foo', 'bar' )
@@ -54,7 +54,7 @@ class InsertQuery extends UnitTestCase {
 
 		// Array.
 		$this->assertQueryTranslation(
-			"INSERT INTO phpunit (foo, bar) VALUES ('bar', 'foo')",
+			"INSERT INTO wptests_phpunit (foo, bar) VALUES ('bar', 'foo')",
 			function( $table ) {
 				$table->set(
 					array(

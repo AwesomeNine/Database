@@ -10,6 +10,7 @@
 namespace Awesome9\Database\Query;
 
 use Closure;
+use Awesome9\Database\Select;
 
 /**
  * Where class.
@@ -74,31 +75,17 @@ class Where extends Base {
 			return $this->where_nested( $column, $type );
 		}
 
-		// If the column is a Closure instance and there is an operator value, we will
-		// assume the developer wants to run a subquery and then compare the result
-		// of that subquery with the given value that was provided to the method.
-		// if ( $this->isQueryable( $column ) && ! is_null( $operator ) ) {
-		// 	[ $sub, $bindings ] = $this->createSub( $column );
-
-		// 	return $this->addBinding( $bindings, 'where')
-		// 		->where( new Expression( '(' . $sub . ')' ), $operator, $value, $type );
-		// }
-
 		// If the value is a Closure, it means the developer is performing an entire
 		// sub-select within the query and we will need to compile the sub-select
 		// within the where clause to get the appropriate query record results.
-		// if ( $value instanceof Closure ) {
-		// 	return $this->whereSub( $column, $operator, $value, $type );
-		// }
+		if ( $value instanceof Closure ) {
+			return $this->where_sub( $column, $operator, $value, $type );
+		}
 
 		// Now that we are working with just a simple query we can put the elements
 		// in our array and add the query binding to our array of bindings that
 		// will be bound to each SQL statements when it is finally executed.
 		$this->wheres[] = $this->generate_where( $column, $operator, $value, empty( $this->wheres ) ? '' : $type );
-
-		// if ( ! $value instanceof Expression ) {
-		// 	$this->wheres[] = $value;
-		// }
 
 		return $this;
 	}
@@ -110,7 +97,7 @@ class Where extends Base {
 	 * @param  string $type   The where type ( and, or ).
 	 * @return $this
 	 */
-	protected function add_array_of_wheres( $column, $type ) {
+	private function add_array_of_wheres( $column, $type ) {
 		return $this->where_nested(
 			function ( $query ) use ( $column ) {
 				foreach ( $column as $key => $value ) {
@@ -132,7 +119,7 @@ class Where extends Base {
 	 * @param  string  $type     Type.
 	 * @return $this
 	 */
-	protected function where_nested( Closure $callback, $type = 'and' ) {
+	private function where_nested( Closure $callback, $type = 'and' ) {
 		$query = new Where( uniqid( 'nested-' ), $this->table, $this->alias );
 		call_user_func( $callback, $query );
 
@@ -141,6 +128,28 @@ class Where extends Base {
 		}
 
 		$this->wheres[] = '(' . $query->get_where_clauses( true ) . ' )';
+
+		return $this;
+	}
+
+	/**
+	 * Generate Where clause
+	 *
+	 * @param  string  $column   The SQL column.
+	 * @param  string  $operator Operator or value depending if $value is not set.
+	 * @param  Closure $callback Callback.
+	 * @param  string  $type     The where type ( and, or ).
+	 * @return string
+	 */
+	private function where_sub( $column, $operator, Closure $callback, $type = 'AND' ) {
+		$query = new Select( uniqid( 'nested-' ), '', '' );
+		call_user_func( $callback, $query );
+
+		if ( ! empty( $this->wheres ) ) {
+			$this->wheres[] = $type;
+		}
+
+		$this->wheres[] = join( ' ', array( $column, $operator, '(' . $query->get_query() . ')' ) );
 
 		return $this;
 	}
@@ -443,9 +452,8 @@ class Where extends Base {
 	/**
 	 * Prepare the value and operator for a where clause.
 	 *
-	 * @param  string  $value       Value.
-	 * @param  string  $operator    Operator.
-	 * @param  boolean $use_default Use default if operator not set.
+	 * @param  string $value    Value.
+	 * @param  string $operator Operator.
 	 * @return array
 	 */
 	private function prepare_value_and_operator( $value, $operator ) {

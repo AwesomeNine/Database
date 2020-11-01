@@ -29,7 +29,7 @@ class UpdateQuery extends UnitTestCase {
 
 		// Simple.
 		$this->assertQueryTranslation(
-			"UPDATE phpunit SET foo = 'bar'",
+			"UPDATE wptests_phpunit SET foo = 'bar'",
 			function( $table ) {
 				$table->set( 'foo', 'bar' );
 			}
@@ -37,7 +37,7 @@ class UpdateQuery extends UnitTestCase {
 
 		// Multiple.
 		$this->assertQueryTranslation(
-			"UPDATE phpunit SET foo = 'bar', bar = 'foo'",
+			"UPDATE wptests_phpunit SET foo = 'bar', bar = 'foo'",
 			function( $table ) {
 				$table
 				->set( 'foo', 'bar' )
@@ -47,7 +47,7 @@ class UpdateQuery extends UnitTestCase {
 
 		// Array.
 		$this->assertQueryTranslation(
-			"UPDATE phpunit SET foo = 'bar', bar = 'foo'",
+			"UPDATE wptests_phpunit SET foo = 'bar', bar = 'foo'",
 			function( $table ) {
 				$table->set(
 					array(
@@ -60,7 +60,7 @@ class UpdateQuery extends UnitTestCase {
 
 		// With where and limit.
 		$this->assertQueryTranslation(
-			"UPDATE phpunit SET foo = 'bar', bar = 'foo' WHERE id = 1 LIMIT 0, 1",
+			"UPDATE wptests_phpunit SET foo = 'bar', bar = 'foo' WHERE id = 1 LIMIT 0, 1",
 			function( $table ) {
 				$table
 					->set( 'foo', 'bar' )

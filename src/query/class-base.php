@@ -76,12 +76,29 @@ class Base {
 	}
 
 	/**
+	 * From table.
+	 *
+	 * @param  string $table The table to run query against.
+	 * @param  string $alias The table alias.
+	 * @return Query The current query.
+	 */
+	public function from( $table, $alias = '' ) {
+		$this->table = $table;
+		$this->alias = $alias;
+
+		return $this;
+	}
+
+	/**
 	 * Get table name.
 	 *
 	 * @return string
 	 */
 	public function get_table() {
-		return $this->wrap_alias( $this->table, $this->alias );
+		return $this->wrap_alias(
+			$this->processor->wrap_table( $this->table ),
+			$this->alias
+		);
 	}
 
 	/**

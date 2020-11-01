@@ -38,35 +38,35 @@ class TestWhereQuery extends UnitTestCase {
 
 	public function test_simple() {
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE votes = 100',
+			'SELECT * FROM wptests_phpunit WHERE votes = 100',
 			function( $table ) {
 				$table->where( 'votes', '=', 100 );
 			}
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE votes = 100',
+			'SELECT * FROM wptests_phpunit WHERE votes = 100',
 			function( $table ) {
 				$table->where( 'votes', 100 );
 			}
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE votes >= 100',
+			'SELECT * FROM wptests_phpunit WHERE votes >= 100',
 			function( $table ) {
 				$table->where( 'votes', '>=', 100 );
 			}
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE votes <> 100',
+			'SELECT * FROM wptests_phpunit WHERE votes <> 100',
 			function( $table ) {
 				$table->where( 'votes', '<>', 100 );
 			}
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE ( status = 1 AND subscribed <> 1 )',
+			'SELECT * FROM wptests_phpunit WHERE ( status = 1 AND subscribed <> 1 )',
 			function( $table ) {
 				$table->where( [
 					[ 'status', '=', 1 ],
@@ -76,7 +76,7 @@ class TestWhereQuery extends UnitTestCase {
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE id = 2 AND active = 1',
+			'SELECT * FROM wptests_phpunit WHERE id = 2 AND active = 1',
 			function( $table ) {
 				$table->where( 'id', 2 )
 					->where( 'active', 1 );
@@ -86,7 +86,7 @@ class TestWhereQuery extends UnitTestCase {
 
 	public function test_or() {
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE id = 42 OR active = 1',
+			'SELECT * FROM wptests_phpunit WHERE id = 42 OR active = 1',
 			function( $table ) {
 				$table->where( 'id', 42 )
 					->orWhere( 'active', 1 );
@@ -94,7 +94,7 @@ class TestWhereQuery extends UnitTestCase {
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE ( status = 2 AND subscribed <> 1 )',
+			'SELECT * FROM wptests_phpunit WHERE ( status = 2 AND subscribed <> 1 )',
 			function( $table ) {
 				$table->orWhere( [
 					[ 'status', '=', 2 ],
@@ -106,7 +106,7 @@ class TestWhereQuery extends UnitTestCase {
 
 	public function test_nesting() {
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE id = 2 OR ( status = 3 AND subscribed <> 1 )',
+			'SELECT * FROM wptests_phpunit WHERE id = 2 OR ( status = 3 AND subscribed <> 1 )',
 			function( $table ) {
 				$table
 					->where( 'id', 2 )
@@ -118,7 +118,7 @@ class TestWhereQuery extends UnitTestCase {
 		);
 
 		$this->assertQueryTranslation(
-			"SELECT * FROM phpunit WHERE votes > 100 AND ( name = 'Abigail' AND votes > 50 )",
+			"SELECT * FROM wptests_phpunit WHERE votes > 100 AND ( name = 'Abigail' AND votes > 50 )",
 			function( $table ) {
 				$table
 					->where('votes', '>', 100)
@@ -130,7 +130,7 @@ class TestWhereQuery extends UnitTestCase {
 		);
 
 		$this->assertQueryTranslation(
-			"SELECT * FROM phpunit WHERE votes > 100 AND ( name = 'Abigail' OR votes > 50 )",
+			"SELECT * FROM wptests_phpunit WHERE votes > 100 AND ( name = 'Abigail' OR votes > 50 )",
 			function( $table ) {
 				$table
 					->where('votes', '>', 100)
@@ -142,7 +142,7 @@ class TestWhereQuery extends UnitTestCase {
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE a = 1 OR ( a > 10 AND a < 20 ) AND c = 30',
+			'SELECT * FROM wptests_phpunit WHERE a = 1 OR ( a > 10 AND a < 20 ) AND c = 30',
 			function( $table ) {
 				$table->where( 'a', 1 )
 					->orWhere( array(
@@ -156,21 +156,21 @@ class TestWhereQuery extends UnitTestCase {
 
 	public function test_in_not_in() {
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE id IN (23, 25, 30)',
+			'SELECT * FROM wptests_phpunit WHERE id IN (23, 25, 30)',
 			function( $table ) {
 				$table->whereIn( 'id', array( 23, 25, 30 ) );
 			}
 		);
 
 		$this->assertQueryTranslation(
-			"SELECT * FROM phpunit WHERE skills IN ('php', 'javascript', 'ruby')",
+			"SELECT * FROM wptests_phpunit WHERE skills IN ('php', 'javascript', 'ruby')",
 			function( $table ) {
 				$table->whereIn( 'skills', array( 'php', 'javascript', 'ruby' ) );
 			}
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE id NOT IN (23, 25, 30)',
+			'SELECT * FROM wptests_phpunit WHERE id NOT IN (23, 25, 30)',
 			function( $table ) {
 				$table->whereNotIn( 'id', array( 23, 25, 30 ) );
 			}
@@ -180,21 +180,21 @@ class TestWhereQuery extends UnitTestCase {
 
 	public function test_between() {
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE id BETWEEN 10 AND 100',
+			'SELECT * FROM wptests_phpunit WHERE id BETWEEN 10 AND 100',
 			function( $table ) {
 				$table->whereBetween( 'id', array( 10, 100 ) );
 			}
 		);
 
 		$this->assertQueryTranslation(
-			"SELECT * FROM phpunit WHERE dates BETWEEN '10-04-2018' AND '10-09-2018'",
+			"SELECT * FROM wptests_phpunit WHERE dates BETWEEN '10-04-2018' AND '10-09-2018'",
 			function( $table ) {
 				$table->whereBetween( 'dates', array( '10-04-2018', '10-09-2018' ) );
 			}
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE id NOT BETWEEN 10 AND 100',
+			'SELECT * FROM wptests_phpunit WHERE id NOT BETWEEN 10 AND 100',
 			function( $table ) {
 				$table->whereNotBetween( 'id', array( 10, 100 ) );
 			}
@@ -206,14 +206,14 @@ class TestWhereQuery extends UnitTestCase {
 	 */
 	public function test_null_not_null() {
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE name IS NULL',
+			'SELECT * FROM wptests_phpunit WHERE name IS NULL',
 			function( $table ) {
 				$table->whereNull( 'name' );
 			}
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE id = 5 AND name IS NULL',
+			'SELECT * FROM wptests_phpunit WHERE id = 5 AND name IS NULL',
 			function( $table ) {
 				$table
 					->where( 'id', 5 )
@@ -222,7 +222,7 @@ class TestWhereQuery extends UnitTestCase {
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE id = 5 AND name IS NOT NULL',
+			'SELECT * FROM wptests_phpunit WHERE id = 5 AND name IS NOT NULL',
 			function( $table ) {
 				$table
 					->where( 'id', 5 )
@@ -231,11 +231,29 @@ class TestWhereQuery extends UnitTestCase {
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit WHERE id = 5 OR name IS NOT NULL',
+			'SELECT * FROM wptests_phpunit WHERE id = 5 OR name IS NOT NULL',
 			function( $table ) {
 				$table
 					->where( 'id', 5 )
 					->orWhereNotNull( 'name' );
+			}
+		);
+	}
+
+	public function test_where_sub_query() {
+		$this->assertQueryTranslation(
+			'SELECT * FROM wptests_phpunit WHERE id IN (SELECT user_id FROM wptests_users WHERE active = 1)',
+			function( $table ) {
+				$table
+					->whereIn(
+						'id',
+						function( $query ) {
+							$query
+								->select( 'user_id' )
+								->from( 'users' )
+								->where( 'active', 1 );
+						}
+					);
 			}
 		);
 	}

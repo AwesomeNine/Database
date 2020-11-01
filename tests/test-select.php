@@ -42,28 +42,28 @@ class TestSelectQuery extends UnitTestCase {
 	public function test_select_simple() {
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit',
+			'SELECT * FROM wptests_phpunit',
 			function( $table ) {
 
 			}
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT * FROM phpunit',
+			'SELECT * FROM wptests_phpunit',
 			function( $table ) {
 				$table->select();
 			}
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT DISTINCT * FROM phpunit',
+			'SELECT DISTINCT * FROM wptests_phpunit',
 			function( $table ) {
 				$table->distinct();
 			}
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT SQL_CALC_FOUND_ROWS * FROM phpunit',
+			'SELECT SQL_CALC_FOUND_ROWS * FROM wptests_phpunit',
 			function( $table ) {
 				$table->found_rows();
 			}
@@ -76,7 +76,7 @@ class TestSelectQuery extends UnitTestCase {
 	public function test_select_fields() {
 
 		$this->assertQueryTranslation(
-			'SELECT id FROM phpunit',
+			'SELECT id FROM wptests_phpunit',
 			function( $table ) {
 				$table->select( 'id' );
 			}
@@ -84,7 +84,7 @@ class TestSelectQuery extends UnitTestCase {
 
 		// Comma seperated fields.
 		$this->assertQueryTranslation(
-			'SELECT id, foo FROM phpunit',
+			'SELECT id, foo FROM wptests_phpunit',
 			function( $table ) {
 				$table->select( 'id, foo' );
 			}
@@ -92,7 +92,7 @@ class TestSelectQuery extends UnitTestCase {
 
 		// With array.
 		$this->assertQueryTranslation(
-			'SELECT id, foo FROM phpunit',
+			'SELECT id, foo FROM wptests_phpunit',
 			function( $table ) {
 				$table->select( [ 'id', 'foo' ] );
 			}
@@ -100,7 +100,7 @@ class TestSelectQuery extends UnitTestCase {
 
 		// With alias as string.
 		$this->assertQueryTranslation(
-			'SELECT id, foo AS f FROM phpunit',
+			'SELECT id, foo AS f FROM wptests_phpunit',
 			function( $table ) {
 				$table->select( 'id, foo AS f' );
 			}
@@ -108,7 +108,7 @@ class TestSelectQuery extends UnitTestCase {
 
 		// With array with alias.
 		$this->assertQueryTranslation(
-			'SELECT id AS d, foo AS f FROM phpunit',
+			'SELECT id AS d, foo AS f FROM wptests_phpunit',
 			function( $table ) {
 				$table->select(
 					[
@@ -125,14 +125,14 @@ class TestSelectQuery extends UnitTestCase {
 	 */
 	public function test_select_count() {
 		$this->assertQueryTranslation(
-			'SELECT COUNT(*), foo AS f FROM phpunit',
+			'SELECT COUNT(*), foo AS f FROM wptests_phpunit',
 			function( $table ) {
 				$table->selectCount()->select( 'foo AS f' );
 			}
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT COUNT(id) AS count FROM phpunit',
+			'SELECT COUNT(id) AS count FROM wptests_phpunit',
 			function( $table ) {
 				$table->selectCount( 'id', 'count' );
 			}
@@ -144,14 +144,14 @@ class TestSelectQuery extends UnitTestCase {
 	 */
 	public function test_select_others() {
 		$this->assertQueryTranslation(
-			'SELECT SUM(id) AS count FROM phpunit',
+			'SELECT SUM(id) AS count FROM wptests_phpunit',
 			function( $table ) {
 				$table->selectSum( 'id', 'count' );
 			}
 		);
 
 		$this->assertQueryTranslation(
-			'SELECT AVG(id) AS average FROM phpunit',
+			'SELECT AVG(id) AS average FROM wptests_phpunit',
 			function( $table ) {
 				$table->selectAvg( 'id', 'average' );
 			}

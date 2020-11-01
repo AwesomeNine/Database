@@ -24,6 +24,18 @@ class WordPress implements Processor {
 	private $last_query = '';
 
 	/**
+	 * Wrap table.
+	 *
+	 * @param  string $table table.
+	 * @return string
+	 */
+	public function wrap_table( $table ) {
+		global $wpdb;
+
+		return $wpdb->prefix . $table;
+	}
+
+	/**
 	 * Translate the given query object and return the results
 	 *
 	 * @param  string $query Database query.

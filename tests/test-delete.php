@@ -29,7 +29,7 @@ class TestDeleteQuery extends UnitTestCase {
 
 		// Simple.
 		$this->assertQueryTranslation(
-			'DELETE FROM phpunit WHERE id = 1 LIMIT 0, 1',
+			'DELETE FROM wptests_phpunit WHERE id = 1 LIMIT 0, 1',
 			function( $table ) {
 				$table->where( 'id', 1 )->limit( 1 );
 			}
