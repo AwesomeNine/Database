@@ -50,14 +50,30 @@ class WordPress implements Processor {
 	}
 
 	/**
+	 * Translate the given query object and return the results
+	 *
+	 * @param  string $query Database query.
+	 * @param  string $output (Optional) Any of ARRAY_A | ARRAY_N | OBJECT | OBJECT_K constants.
+	 * @return mixed
+	 */
+	public function get_row( $query, $output = \OBJECT ) {
+		global $wpdb;
+
+		$this->last_query = $query;
+		return $wpdb->get_row( $this->last_query, $output ); // phpcs:ignore
+	}
+
+	/**
 	 * Translate the given query object and return one variable from the database
 	 *
 	 * @param  string $query Database query.
 	 * @return mixed
 	 */
 	public function var( $query ) {
-		$row = $this->one( $query, \ARRAY_A );
-		return is_null( $row ) ? false : current( $row );
+		global $wpdb;
+
+		$this->last_query = $query;
+		return $wpdb->get_var( $query );
 	}
 
 	/**
@@ -73,5 +89,16 @@ class WordPress implements Processor {
 
 		$this->last_query = $query;
 		return $wpdb->query( $query ); // phpcs:ignore
+	}
+
+	/**
+	 * Get insert od.
+	 *
+	 * @return int
+	 */
+	public function get_insert_id() {
+		global $wpdb;
+
+		return $wpdb->insert_id;
 	}
 }

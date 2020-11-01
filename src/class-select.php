@@ -87,6 +87,18 @@ class Select extends Groupby implements Query {
 	}
 
 	/**
+	 * Get one row.
+	 *
+	 * @param string $output (Optional) Any of ARRAY_A | ARRAY_N | OBJECT | OBJECT_K constants.
+	 * @return mixed
+	 */
+	public function one( $output = \OBJECT ) {
+		$this->limit( 1 );
+
+		return $this->processor->get_row( $this->get_query(), $output ); // WPCS: unprepared SQL ok.
+	}
+
+	/**
 	 * Translate the current query to a SQL select statement
 	 *
 	 * @return string

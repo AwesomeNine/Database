@@ -51,4 +51,15 @@ class Insert extends Base implements Query {
 
 		return join( ' ', $build );
 	}
+
+	/**
+	 * Execute query.
+	 *
+	 * @return mixed
+	 */
+	public function execute() {
+		$this->processor->query( $this->get_query() );
+
+		return $this->processor->get_insert_id();
+	}
 }
