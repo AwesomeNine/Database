@@ -24,9 +24,9 @@ class WordPress implements Processor {
 	private $last_query = '';
 
 	/**
-	 * Wrap table.
+	 * Prefix table.
 	 *
-	 * @param  string $table table.
+	 * @param  string $table Table.
 	 * @return string
 	 */
 	public function wrap_table( $table ) {
@@ -36,9 +36,9 @@ class WordPress implements Processor {
 	}
 
 	/**
-	 * Translate the given query object and return the results
+	 * Execute given query and return the results.
 	 *
-	 * @param  string $query Database query.
+	 * @param  string $query  Database query.
 	 * @param  string $output (Optional) Any of ARRAY_A | ARRAY_N | OBJECT | OBJECT_K constants.
 	 * @return mixed
 	 */
@@ -50,9 +50,9 @@ class WordPress implements Processor {
 	}
 
 	/**
-	 * Translate the given query object and return the results
+	 * Execute given query and return the one row.
 	 *
-	 * @param  string $query Database query.
+	 * @param  string $query  Database query.
 	 * @param  string $output (Optional) Any of ARRAY_A | ARRAY_N | OBJECT | OBJECT_K constants.
 	 * @return mixed
 	 */
@@ -64,7 +64,7 @@ class WordPress implements Processor {
 	}
 
 	/**
-	 * Translate the given query object and return one variable from the database
+	 * Execute given query and return one variable from the database.
 	 *
 	 * @param  string $query Database query.
 	 * @return mixed
@@ -73,7 +73,7 @@ class WordPress implements Processor {
 		global $wpdb;
 
 		$this->last_query = $query;
-		return $wpdb->get_var( $query );
+		return $wpdb->get_var( $query ); // phpcs:ignore
 	}
 
 	/**
@@ -81,7 +81,7 @@ class WordPress implements Processor {
 	 *
 	 * @see wpdb::query
 	 *
-	 * @param string $query Database query.
+	 * @param  string $query Database query.
 	 * @return int|false Number of rows affected|selected or false on error.
 	 */
 	public function query( $query ) {
@@ -92,7 +92,7 @@ class WordPress implements Processor {
 	}
 
 	/**
-	 * Get insert od.
+	 * Get insert id.
 	 *
 	 * @return int
 	 */
