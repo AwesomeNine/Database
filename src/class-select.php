@@ -9,13 +9,13 @@
 
 namespace Awesome9\Database;
 
+use Awesome9\Database\Query\Groupby;
 use Awesome9\Database\Interfaces\Query;
-use Awesome9\Database\Query\Select as SelectBase;
 
 /**
  * Select class.
  */
-class Select extends SelectBase implements Query {
+class Select extends Groupby implements Query {
 
 	/**
 	 * Make a distinct selection
@@ -37,6 +37,19 @@ class Select extends SelectBase implements Query {
 	 * @var array
 	 */
 	protected $select = [];
+
+	/**
+	 * Reset query.
+	 */
+	public function reset() {
+		parent::reset();
+		$this->groups     = [];
+		$this->having     = [];
+		$this->orders     = [];
+		$this->select     = [];
+		$this->distinct   = false;
+		$this->found_rows = false;
+	}
 
 	/**
 	 * Distinct select setter
