@@ -1,6 +1,6 @@
 <?php
 /**
- * The WordPress DB Processor.
+ * The WordPress DB Processor
  *
  * @since   1.0.0
  * @package Awesome9\Database\Processor

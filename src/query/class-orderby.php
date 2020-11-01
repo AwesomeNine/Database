@@ -1,6 +1,6 @@
 <?php // phpcs:ignore
 /**
- * The Where
+ * The Orderby grammer
  *
  * @since   1.0.0
  * @package Awesome9\Database\Query
@@ -49,7 +49,7 @@ class Orderby extends Where {
 	}
 
 	/**
-	 * Add an order by statement to the current query
+	 * Add an order by statement to the current query.
 	 *
 	 *     ->orderBy('created_at')
 	 *     ->orderBy('modified_at', 'desc')
@@ -60,10 +60,9 @@ class Orderby extends Where {
 	 *     Muliple order statements with diffrent directions
 	 *     ->orderBy(['firstname' => 'asc', 'lastname' => 'desc'])
 	 *
-	 * @param array|string $columns   Columns.
-	 * @param string       $direction Direction.
-	 *
-	 * @return self The current query builder.
+	 * @param  array|string $columns   Columns.
+	 * @param  string       $direction Direction.
+	 * @return Query The current query.
 	 */
 	public function orderBy( $columns, $direction = 'ASC' ) { // @codingStandardsIgnoreLine
 		if ( is_string( $columns ) ) {
@@ -84,8 +83,7 @@ class Orderby extends Where {
 	/**
 	 * Returns an string argument as parsed array if possible
 	 *
-	 * @param string $argument Argument to validate.
-	 *
+	 * @param  string $argument Argument to validate.
 	 * @return array
 	 */
 	protected function argument_to_array( $argument ) {

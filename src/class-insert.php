@@ -1,6 +1,6 @@
 <?php
 /**
- * The Insert
+ * The Insert query
  *
  * @since   1.0.0
  * @package Awesome9\Database
@@ -18,12 +18,11 @@ use Awesome9\Database\Interfaces\Query;
 class Insert extends Base implements Query {
 
 	/**
-	 * Set values for insert/update
+	 * Set values for insert/update.
 	 *
-	 * @param string|array $name  Key of pair.
-	 * @param string|array $value Value of pair.
-	 *
-	 * @return self The current query builder.
+	 * @param  string|array $name  Key of pair.
+	 * @param  string|array $value Value of pair.
+	 * @return Query The current query.
 	 */
 	public function set( $name, $value = null ) {
 		if ( is_array( $name ) ) {
@@ -38,7 +37,7 @@ class Insert extends Base implements Query {
 	}
 
 	/**
-	 * Translate the current query to a SQL insert statement
+	 * Translate the current query to a SQL insert statement.
 	 *
 	 * @return string
 	 */

@@ -1,6 +1,6 @@
 <?php
 /**
- * The Query interface.
+ * The Query interface
  *
  * @since   1.0.0
  * @package Awesome9\Database\Interfaces

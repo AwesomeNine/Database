@@ -1,6 +1,6 @@
 <?php
 /**
- * The Select
+ * The Select query
  *
  * @since   1.0.0
  * @package Awesome9\Database
@@ -52,11 +52,10 @@ class Select extends Groupby implements Query {
 	}
 
 	/**
-	 * Distinct select setter
+	 * Distinct select setter.
 	 *
-	 * @param bool $distinct Is disticnt.
-	 *
-	 * @return self The current query builder.
+	 * @param  bool $distinct Is disticnt.
+	 * @return Query The current query.
 	 */
 	public function distinct( $distinct = true ) {
 		$this->distinct = $distinct;
@@ -65,11 +64,10 @@ class Select extends Groupby implements Query {
 	}
 
 	/**
-	 * SQL_CALC_FOUND_ROWS select setter
+	 * SQL_CALC_FOUND_ROWS select setter.
 	 *
 	 * @param bool $found_rows Should get found rows.
-	 *
-	 * @return self The current query builder.
+	 * @return Query The current query.
 	 */
 	public function found_rows( $found_rows = true ) {
 		$this->found_rows = $found_rows;
@@ -89,7 +87,7 @@ class Select extends Groupby implements Query {
 	/**
 	 * Get one row.
 	 *
-	 * @param string $output (Optional) Any of ARRAY_A | ARRAY_N | OBJECT | OBJECT_K constants.
+	 * @param  string $output (Optional) Any of ARRAY_A | ARRAY_N | OBJECT | OBJECT_K constants.
 	 * @return mixed
 	 */
 	public function one( $output = \OBJECT ) {
@@ -99,7 +97,7 @@ class Select extends Groupby implements Query {
 	}
 
 	/**
-	 * Translate the current query to a SQL select statement
+	 * Translate the current query to a SQL select statement.
 	 *
 	 * @return string
 	 */
@@ -148,11 +146,10 @@ class Select extends Groupby implements Query {
 	}
 
 	/**
-	 * Set the selected fields
+	 * Set the selected fields.
 	 *
-	 * @param array $fields Fields to select.
-	 *
-	 * @return self The current query builder.
+	 * @param  array $fields Fields to select.
+	 * @return Query The current query.
 	 */
 	public function select( $fields = '' ) {
 		if ( empty( $fields ) ) {
@@ -174,88 +171,82 @@ class Select extends Groupby implements Query {
 	}
 
 	/**
-	 * Shortcut to add a count function
+	 * Shortcut to add a count function.
 	 *
 	 *     ->selectCount('id')
 	 *     ->selectCount('id', 'count')
 	 *
-	 * @param string $field Column name.
-	 * @param string $alias (Optional) Column alias.
-	 *
-	 * @return self The current query builder.
+	 * @param  string $field Column name.
+	 * @param  string $alias (Optional) Column alias.
+	 * @return Query The current query.
 	 */
 	public function selectCount( $field = '*', $alias = null ) { // @codingStandardsIgnoreLine
 		return $this->selectFunc( 'COUNT', $field, $alias );
 	}
 
 	/**
-	 * Shortcut to add a sum function
+	 * Shortcut to add a sum function.
 	 *
 	 *     ->selectSum('id')
 	 *     ->selectSum('id', 'total')
 	 *
-	 * @param string $field Column name.
-	 * @param string $alias (Optional) Column alias.
-	 *
-	 * @return self The current query builder.
+	 * @param  string $field Column name.
+	 * @param  string $alias (Optional) Column alias.
+	 * @return Query The current query.
 	 */
 	public function selectSum( $field, $alias = null ) { // @codingStandardsIgnoreLine
 		return $this->selectFunc( 'SUM', $field, $alias );
 	}
 
 	/**
-	 * Shortcut to add a avg function
+	 * Shortcut to add a avg function.
 	 *
 	 *     ->selectAvg('id')
 	 *     ->selectAvg('id', 'average')
 	 *
-	 * @param string $field Column name.
-	 * @param string $alias (Optional) Column alias.
-	 *
-	 * @return self The current query builder.
+	 * @param  string $field Column name.
+	 * @param  string $alias (Optional) Column alias.
+	 * @return Query The current query.
 	 */
 	public function selectAvg( $field, $alias = null ) { // @codingStandardsIgnoreLine
 		return $this->selectFunc( 'AVG', $field, $alias );
 	}
 
 	/**
-	 * Shortcut to add a max function
+	 * Shortcut to add a max function.
 	 *
 	 *     ->selectMax('id')
 	 *     ->selectMax('id', 'average')
 	 *
-	 * @param string $field Column name.
-	 * @param string $alias (Optional) Column alias.
-	 *
-	 * @return self The current query builder.
+	 * @param  string $field Column name.
+	 * @param  string $alias (Optional) Column alias.
+	 * @return Query The current query.
 	 */
 	public function selectMax( $field, $alias = null ) { // @codingStandardsIgnoreLine
 		return $this->selectFunc( 'MAX', $field, $alias );
 	}
 
 	/**
-	 * Shortcut to add a min function
+	 * Shortcut to add a min function.
 	 *
 	 *     ->selectMin('id')
 	 *     ->selectMin('id', 'average')
 	 *
-	 * @param string $field Column name.
-	 * @param string $alias (Optional) Column alias.
-	 *
-	 * @return self The current query builder.
+	 * @param  string $field Column name.
+	 * @param  string $alias (Optional) Column alias.
+	 * @return Query The current query.
 	 */
 	public function selectMin( $field, $alias = null ) { // @codingStandardsIgnoreLine
 		return $this->selectFunc( 'MIN', $field, $alias );
 	}
 
 	/**
-	 * Shortcut to add a function
+	 * Shortcut to add a function.
 	 *
-	 * @param string $func  Function name.
-	 * @param string $field Column name.
-	 * @param string $alias (Optional) Column alias.
-	 *
-	 * @return self The current query builder.
+	 * @param  string $func  Function name.
+	 * @param  string $field Column name.
+	 * @param  string $alias (Optional) Column alias.
+	 * @return Query The current query.
 	 */
 	private function selectFunc( $func, $field, $alias = null ) { // @codingStandardsIgnoreLine
 		$this->select[] = $this->wrap_alias( "$func({$field})", $alias );

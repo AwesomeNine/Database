@@ -1,6 +1,6 @@
 <?php
 /**
- * The Update
+ * The Update query
  *
  * @since   1.0.0
  * @package Awesome9\Database
@@ -18,7 +18,7 @@ use Awesome9\Database\Interfaces\Query;
 class Update extends Where implements Query {
 
 	/**
-	 * Translate the current query to a SQL update statement
+	 * Translate the current query to a SQL update statement.
 	 *
 	 * @return string
 	 */

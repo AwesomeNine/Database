@@ -1,6 +1,6 @@
 <?php
 /**
- * The Delete
+ * The Delete query
  *
  * @since   1.0.0
  * @package Awesome9\Database

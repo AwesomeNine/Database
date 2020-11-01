@@ -1,6 +1,6 @@
 <?php // phpcs:ignore
 /**
- * The Where
+ * The Grouby grammer
  *
  * @since   1.0.0
  * @package Awesome9\Database\Query
@@ -29,13 +29,12 @@ class Groupby extends Orderby {
 	protected $having = [];
 
 	/**
-	 * Add an group by statement to the current query
+	 * Add an group by statement to the current query.
 	 *
 	 *     ->groupBy('created_at')
 	 *
-	 * @param array|string $columns Columns.
-	 *
-	 * @return self The current query builder.
+	 * @param  array|string $columns Columns.
+	 * @return Query The current query.
 	 */
 	public function groupBy( $columns ) { // @codingStandardsIgnoreLine
 		if ( is_string( $columns ) ) {
@@ -48,12 +47,12 @@ class Groupby extends Orderby {
 	}
 
 	/**
-	 * Generate Having clause
+	 * Generate Having clause.
 	 *
 	 * @param  string $column   The SQL column.
 	 * @param  string $operator Operator or value depending if $value is not set.
 	 * @param  mixed  $value    The value if $operator is set.
-	 * @return self The current query builder.
+	 * @return Query The current query.
 	 */
 	public function having( $column, $operator = null, $value = null ) {
 		$this->having = $this->generate_where( $column, $operator, $value, 'HAVING' );

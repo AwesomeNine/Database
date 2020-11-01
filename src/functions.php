@@ -14,31 +14,55 @@ namespace Awesome9\Database;
  *
  * @since  1.0.0
  *
- * @param string $name  A query unique id.
- * @param string $table The table to run query against.
- * @param string $alias The table alias.
+ * @param  string $name  A query unique id.
+ * @param  string $table The table to run query against.
+ * @param  string $alias The table alias.
  * @return Query Query instance.
  */
 function select( $name, $table, $alias = '' ) {
-	global $wpdb;
-
-	return new Select( $name, $wpdb->prefix . $table, $alias );
+	return new Select( $name, $table, $alias );
 }
 
 /**
- * Retrieve a query instance with table name.
+ * Retrieve a insert query instance with table name.
  *
  * @since  1.0.0
  *
- * @param string $name  A query unique id.
- * @param string $table The table to run query against.
- * @param string $alias The table alias.
+ * @param  string $name  A query unique id.
+ * @param  string $table The table to run query against.
+ * @param  string $alias The table alias.
  * @return Query Query instance.
  */
-function query( $name, $table, $alias = '' ) {
-	global $wpdb;
+function insert( $name, $table, $alias = '' ) {
+	return new Insert( $name, $table, $alias );
+}
 
-	return new Query( $name, $wpdb->prefix . $table, $alias );
+/**
+ * Retrieve a update query instance with table name.
+ *
+ * @since  1.0.0
+ *
+ * @param  string $name  A query unique id.
+ * @param  string $table The table to run query against.
+ * @param  string $alias The table alias.
+ * @return Query Query instance.
+ */
+function update( $name, $table, $alias = '' ) {
+	return new Update( $name, $table, $alias );
+}
+
+/**
+ * Retrieve a delete query instance with table name.
+ *
+ * @since  1.0.0
+ *
+ * @param  string $name  A query unique id.
+ * @param  string $table The table to run query against.
+ * @param  string $alias The table alias.
+ * @return Query Query instance.
+ */
+function delete( $name, $table, $alias = '' ) {
+	return new Delete( $name, $table, $alias );
 }
 
 /**

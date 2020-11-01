@@ -1,6 +1,6 @@
 <?php
 /**
- * The Query
+ * The Query base calss
  *
  * @since   1.0.0
  * @package Awesome9\Database\Query
@@ -113,10 +113,9 @@ class Base {
 	/**
 	 * Set values for insert/update
 	 *
-	 * @param string|array $name  Key of pair.
-	 * @param string|array $value Value of pair.
-	 *
-	 * @return self The current query builder.
+	 * @param  string|array $name  Key of pair.
+	 * @param  string|array $value Value of pair.
+	 * @return Query The current query.
 	 */
 	public function set( $name, $value = null ) {
 		if ( is_array( $name ) ) {
@@ -148,7 +147,7 @@ class Base {
 	}
 
 	/**
-	 * Create an query limit based on a page and a page size
+	 * Create an query limit based on a page and a page size.
 	 *
 	 * @param  int $page Page number.
 	 * @param  int $size Page size.
@@ -164,10 +163,9 @@ class Base {
 	}
 
 	/**
-	 * Escape array values for sql
+	 * Escape array values for sql.
 	 *
 	 * @param  array $arr Array to escape.
-	 *
 	 * @return array
 	 */
 	protected function esc_array( $arr ) {
@@ -175,10 +173,9 @@ class Base {
 	}
 
 	/**
-	 * Escape value for sql
+	 * Escape value for sql.
 	 *
 	 * @param  mixed $value Value to escape.
-	 *
 	 * @return mixed
 	 */
 	protected function esc_value( $value ) {
@@ -200,12 +197,11 @@ class Base {
 	}
 
 	/**
-	 * Escape value for like statement
+	 * Escape value for like statement.
 	 *
-	 * @param string $value  Value for like statement.
-	 * @param string $start  (Optional) The start of like query.
-	 * @param string $end    (Optional) The end of like query.
-	 *
+	 * @param  string $value Value for like statement.
+	 * @param  string $start (Optional) The start of like query.
+	 * @param  string $end   (Optional) The end of like query.
 	 * @return string
 	 */
 	protected function esc_like( $value, $start = '%', $end = '%' ) {
