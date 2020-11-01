@@ -14,6 +14,19 @@
 
 This package is an expressive query builder for WordPress, it ease the SQL generation and takes care of sanitization of data as well.
 
+### Data Sanitisation
+
+The purpose of this library is to provide an **expressive** and **safe*** way
+to run queries against your WordPress database (typically involving custom tables).
+
+To this end all **values** provided are escaped, but note that **column and table**
+names are not yet escaped. In any case, even if they were you should be whitelisting
+any allowed columns/tables: otherwise using user-input, or other untrusted data to
+determine the column/table could allow an attacker to retrieve data they shouldn't
+or generate a map of your database.
+
+---
+
 ## 💾 Installation
 
 ``` bash
@@ -22,10 +35,17 @@ composer require awesome9/database
 
 ## 🕹 Usage
 
-Coming soon.
+For complete usage details goto [documentation](https://github.com/AwesomeNine/Database/wiki)
 
 ```php
-Some code goes here.
+include('vendor/autoload.php');
+
+$select = new Awesome9\Database\select( 'unique_query_id', 'users' );
+
+$select->where( 'id', 2 )
+  ->orderBy( 'id', 'desc' )
+  ->limit( 20 )
+  ->execute();
 ```
 
 ## 📖 Changelog
