@@ -1,6 +1,6 @@
 <?php
 /**
- * Unit tests for Breadcrumbs Helper
+ * Unit tests Helper
  *
  * @since   1.0.0
  * @package Awesome9\Tests\Database
@@ -9,7 +9,9 @@
 
 namespace Awesome9\Tests\Database;
 
-abstract class UnitTestCase extends \WP_UnitTestCase {
+use WP_UnitTestCase;
+
+abstract class UnitTestCase extends WP_UnitTestCase {
 
 	/**
 	 * Get private variable value.

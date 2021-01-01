@@ -1,6 +1,6 @@
 <?php
 /**
- * The Array helpers.
+ * The Delete query tests.
  *
  * @since   1.0.0
  * @package Awesome9\Tests\Database

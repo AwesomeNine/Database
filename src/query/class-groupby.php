@@ -1,4 +1,4 @@
-<?php // phpcs:ignore
+<?php
 /**
  * The Grouby grammer
  *
@@ -58,5 +58,14 @@ class Groupby extends Orderby {
 		$this->having = $this->generate_where( $column, $operator, $value, 'HAVING' );
 
 		return $this;
+	}
+
+	/**
+	 * Reset query.
+	 */
+	public function reset() {
+		parent::reset();
+		$this->groups = [];
+		$this->having = [];
 	}
 }

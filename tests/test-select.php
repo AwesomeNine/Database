@@ -1,6 +1,6 @@
 <?php
 /**
- * The Array helpers.
+ * The Select query tests.
  *
  * @since   1.0.0
  * @package Awesome9\Tests\Database

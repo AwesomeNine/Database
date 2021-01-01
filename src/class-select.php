@@ -9,13 +9,13 @@
 
 namespace Awesome9\Database;
 
-use Awesome9\Database\Query\Groupby;
+use Awesome9\Database\Query\Joins;
 use Awesome9\Database\Interfaces\Query;
 
 /**
  * Select class.
  */
-class Select extends Groupby implements Query {
+class Select extends Joins implements Query {
 
 	/**
 	 * Make a distinct selection
@@ -43,9 +43,6 @@ class Select extends Groupby implements Query {
 	 */
 	public function reset() {
 		parent::reset();
-		$this->groups     = [];
-		$this->having     = [];
-		$this->orders     = [];
 		$this->select     = [];
 		$this->distinct   = false;
 		$this->found_rows = false;
@@ -117,6 +114,11 @@ class Select extends Groupby implements Query {
 
 		// Append the table.
 		$build[] = 'FROM ' . $this->get_table();
+
+		// Build the joins statements.
+		if ( ! empty( $this->joins ) ) {
+			$build[] = join( ' ', $this->joins );
+		}
 
 		// Build the where statements.
 		if ( ! empty( $this->wheres ) ) {

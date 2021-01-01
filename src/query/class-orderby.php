@@ -1,4 +1,4 @@
-<?php // phpcs:ignore
+<?php
 /**
  * The Orderby grammer
  *
@@ -46,6 +46,14 @@ class Orderby extends Where {
 		}
 
 		return 'ORDER BY ' . join( ', ', $build );
+	}
+
+	/**
+	 * Reset query.
+	 */
+	public function reset() {
+		parent::reset();
+		$this->orders = [];
 	}
 
 	/**

@@ -1,4 +1,4 @@
-<?php // phpcs:ignore
+<?php
 /**
  * The Where grammer
  *
