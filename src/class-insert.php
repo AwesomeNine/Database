@@ -42,7 +42,7 @@ class Insert extends Base implements Query {
 	 * @return string
 	 */
 	public function get_query() {
-		$build = [ 'INSERT INTO ' . $this->get_table() ];
+		$build = array( 'INSERT INTO ' . $this->get_table() );
 
 		$build[] = '(' . join( ', ', array_keys( $this->values ) ) . ')';
 		$build[] = 'VALUES';

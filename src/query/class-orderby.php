@@ -19,7 +19,7 @@ class Orderby extends Where {
 	 *
 	 * @var array
 	 */
-	protected $orders = [];
+	protected $orders = array();
 
 	/**
 	 * Get order clause.
@@ -53,7 +53,7 @@ class Orderby extends Where {
 	 */
 	public function reset() {
 		parent::reset();
-		$this->orders = [];
+		$this->orders = array();
 	}
 
 	/**

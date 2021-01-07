@@ -69,7 +69,7 @@ class WordPress implements Processor {
 	 * @param  string $query Database query.
 	 * @return mixed
 	 */
-	public function var( $query ) {
+	public function get_var( $query ) {
 		global $wpdb;
 
 		$this->last_query = $query;

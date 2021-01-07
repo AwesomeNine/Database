@@ -42,7 +42,7 @@ class Base {
 	 *
 	 * @var array
 	 */
-	protected $values = [];
+	protected $values = array();
 
 	/**
 	 * The query limit.
@@ -229,7 +229,7 @@ class Base {
 	 * @return string
 	 */
 	protected function wrap_value( $column, $value, $operator = '=' ) {
-		return join( ' ', [ $column, $operator, $value ] );
+		return join( ' ', array( $column, $operator, $value ) );
 	}
 
 	/**
@@ -237,6 +237,6 @@ class Base {
 	 */
 	public function reset() {
 		$this->limit  = null;
-		$this->values = [];
+		$this->values = array();
 	}
 }

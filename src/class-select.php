@@ -36,14 +36,14 @@ class Select extends Joins implements Query {
 	 *
 	 * @var array
 	 */
-	protected $select = [];
+	protected $select = array();
 
 	/**
 	 * Reset query.
 	 */
 	public function reset() {
 		parent::reset();
-		$this->select     = [];
+		$this->select     = array();
 		$this->distinct   = false;
 		$this->found_rows = false;
 	}

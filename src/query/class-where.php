@@ -22,7 +22,7 @@ class Where extends Base {
 	 *
 	 * @var array
 	 */
-	protected $wheres = [];
+	protected $wheres = array();
 
 	/**
 	 * Get where clause.
@@ -43,7 +43,7 @@ class Where extends Base {
 	 */
 	public function reset() {
 		parent::reset();
-		$this->wheres = [];
+		$this->wheres = array();
 	}
 
 	/**
@@ -66,7 +66,7 @@ class Where extends Base {
 		// Here we will make some assumptions about the operator. If only 2 values are
 		// passed to the method, we will assume that the operator is an equals sign
 		// and keep going. Otherwise, we'll require the operator to be passed in.
-		[ $value, $operator ] = $this->prepare_value_and_operator( $value, $operator );
+		list( $value, $operator ) = $this->prepare_value_and_operator( $value, $operator );
 
 		// If the columns is actually a Closure instance, we will assume the developer
 		// wants to begin a nested where statement which is wrapped in parenthesis.
@@ -442,10 +442,10 @@ class Where extends Base {
 	 */
 	private function prepare_value_and_operator( $value, $operator ) {
 		if ( is_null( $value ) ) {
-			return [ $operator, '=' ];
+			return array( $operator, '=' );
 		}
 
-		return [ $value, $operator ];
+		return array( $value, $operator );
 	}
 
 	/**

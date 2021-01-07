@@ -19,14 +19,14 @@ class Groupby extends Orderby {
 	 *
 	 * @var array
 	 */
-	protected $groups = [];
+	protected $groups = array();
 
 	/**
 	 * Having statements
 	 *
 	 * @var array
 	 */
-	protected $having = [];
+	protected $having = array();
 
 	/**
 	 * Add an group by statement to the current query.
@@ -65,7 +65,7 @@ class Groupby extends Orderby {
 	 */
 	public function reset() {
 		parent::reset();
-		$this->groups = [];
-		$this->having = [];
+		$this->groups = array();
+		$this->having = array();
 	}
 }

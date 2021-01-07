@@ -23,7 +23,7 @@ class Update extends Where implements Query {
 	 * @return string
 	 */
 	public function get_query() {
-		$build = [ 'UPDATE ' . $this->get_table() . ' SET' ];
+		$build = array( 'UPDATE ' . $this->get_table() . ' SET' );
 
 		if ( ! empty( $this->values ) ) {
 			$build[] = join( ', ', $this->values );
