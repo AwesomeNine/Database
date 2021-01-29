@@ -49,7 +49,7 @@ class TestJoinsQuery extends UnitTestCase {
 
 	public function test_join_with_subquery() {
 		$this->assertQueryTranslation(
-			'SELECT * FROM wptests_posts JOIN ( SELECT post_id FROM wptests_product_lookup WHERE active = 1 ) AS plk ON wptests_posts.ID = plk.ID',
+			'SELECT * FROM wptests_posts JOIN ( SELECT post_id FROM wptests_product_lookup WHERE active = 1 ) AS plk ON wptests_posts.ID = plk.post_id',
 			function( $table ) {
 				$table->select()
 					->join(
@@ -60,7 +60,7 @@ class TestJoinsQuery extends UnitTestCase {
 								->where( 'active', 1 );
 						},
 						'ID',
-						null,
+						'post_id',
 						'plk'
 					);
 			}
