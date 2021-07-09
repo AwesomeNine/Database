@@ -23,7 +23,7 @@ class Delete extends Where implements Query {
 	 * @return string
 	 */
 	public function get_query() {
-		$build = array( 'DELETE FROM ' . $this->get_table() );
+		$build = [ 'DELETE FROM ' . $this->get_table() ];
 
 		// Build the where statements.
 		if ( ! empty( $this->wheres ) ) {

@@ -22,7 +22,7 @@ class Joins extends Groupby {
 	 *
 	 * @var array
 	 */
-	protected $joins = array();
+	protected $joins = [];
 
 	/**
 	 * Add an group by statement to the current query.
@@ -78,7 +78,7 @@ class Joins extends Groupby {
 	 */
 	public function reset() {
 		parent::reset();
-		$this->joins = array();
+		$this->joins = [];
 	}
 
 	/**

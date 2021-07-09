@@ -19,7 +19,7 @@ class Orderby extends Where {
 	 *
 	 * @var array
 	 */
-	protected $orders = array();
+	protected $orders = [];
 
 	/**
 	 * Get order clause.
@@ -27,7 +27,7 @@ class Orderby extends Where {
 	 * @return string
 	 */
 	public function get_order_clauses() {
-		$build = array();
+		$build = [];
 
 		foreach ( $this->orders as $column => $direction ) {
 
@@ -53,7 +53,7 @@ class Orderby extends Where {
 	 */
 	public function reset() {
 		parent::reset();
-		$this->orders = array();
+		$this->orders = [];
 	}
 
 	/**
@@ -99,6 +99,6 @@ class Orderby extends Where {
 			return array_map( 'trim', explode( ',', $argument ) );
 		}
 
-		return array( $argument );
+		return [ $argument ];
 	}
 }

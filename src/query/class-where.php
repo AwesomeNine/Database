@@ -22,7 +22,7 @@ class Where extends Base {
 	 *
 	 * @var array
 	 */
-	protected $wheres = array();
+	protected $wheres = [];
 
 	/**
 	 * Get where clause.
@@ -43,7 +43,7 @@ class Where extends Base {
 	 */
 	public function reset() {
 		parent::reset();
-		$this->wheres = array();
+		$this->wheres = [];
 	}
 
 	/**
@@ -149,7 +149,7 @@ class Where extends Base {
 			$this->wheres[] = $type;
 		}
 
-		$this->wheres[] = join( ' ', array( $column, $operator, '(' . $query->get_query() . ')' ) );
+		$this->wheres[] = join( ' ', [ $column, $operator, '(' . $query->get_query() . ')' ] );
 
 		return $this;
 	}
@@ -175,7 +175,7 @@ class Where extends Base {
 	 * @param  array  $options Array of values for in statement.
 	 * @return Query The current query.
 	 */
-	public function whereIn( $column, $options = array() ) { // @codingStandardsIgnoreLine
+	public function whereIn( $column, $options = [] ) { // @codingStandardsIgnoreLine
 		if ( empty( $options ) ) {
 			return $this;
 		}
@@ -192,7 +192,7 @@ class Where extends Base {
 	 * @param  array  $options Array of values for in statement.
 	 * @return Query The current query.
 	 */
-	public function orWhereIn( $column, $options = array() ) { // @codingStandardsIgnoreLine
+	public function orWhereIn( $column, $options = [] ) { // @codingStandardsIgnoreLine
 		if ( empty( $options ) ) {
 			return $this;
 		}
@@ -209,7 +209,7 @@ class Where extends Base {
 	 * @param  array  $options Array of values for in statement.
 	 * @return Query The current query.
 	 */
-	public function whereNotIn( $column, $options = array() ) { // @codingStandardsIgnoreLine
+	public function whereNotIn( $column, $options = [] ) { // @codingStandardsIgnoreLine
 		if ( empty( $options ) ) {
 			return $this;
 		}
@@ -226,7 +226,7 @@ class Where extends Base {
 	 * @param  array  $options Array of values for in statement.
 	 * @return Query The current query.
 	 */
-	public function orWhereNotIn( $column, $options = array() ) { // @codingStandardsIgnoreLine
+	public function orWhereNotIn( $column, $options = [] ) { // @codingStandardsIgnoreLine
 		if ( empty( $options ) ) {
 			return $this;
 		}
@@ -243,7 +243,7 @@ class Where extends Base {
 	 * @param  array  $options Array of values for in statement.
 	 * @return Query The current query.
 	 */
-	public function whereBetween( $column, $options = array() ) { // @codingStandardsIgnoreLine
+	public function whereBetween( $column, $options = [] ) { // @codingStandardsIgnoreLine
 		if ( empty( $options ) ) {
 			return $this;
 		}
@@ -260,7 +260,7 @@ class Where extends Base {
 	 * @param  array  $options Array of values for in statement.
 	 * @return Query The current query.
 	 */
-	public function orWhereBetween( $column, $options = array() ) { // @codingStandardsIgnoreLine
+	public function orWhereBetween( $column, $options = [] ) { // @codingStandardsIgnoreLine
 		if ( empty( $options ) ) {
 			return $this;
 		}
@@ -277,7 +277,7 @@ class Where extends Base {
 	 * @param  array  $options Array of values for in statement.
 	 * @return Query The current query.
 	 */
-	public function whereNotBetween( $column, $options = array() ) { // @codingStandardsIgnoreLine
+	public function whereNotBetween( $column, $options = [] ) { // @codingStandardsIgnoreLine
 		if ( empty( $options ) ) {
 			return $this;
 		}
@@ -294,7 +294,7 @@ class Where extends Base {
 	 * @param  array  $options Array of values for in statement.
 	 * @return Query The current query.
 	 */
-	public function orWhereNotBetween( $column, $options = array() ) { // @codingStandardsIgnoreLine
+	public function orWhereNotBetween( $column, $options = [] ) { // @codingStandardsIgnoreLine
 		if ( empty( $options ) ) {
 			return $this;
 		}
@@ -442,10 +442,10 @@ class Where extends Base {
 	 */
 	private function prepare_value_and_operator( $value, $operator ) {
 		if ( is_null( $value ) ) {
-			return array( $operator, '=' );
+			return [ $operator, '=' ];
 		}
 
-		return array( $value, $operator );
+		return [ $value, $operator ];
 	}
 
 	/**
@@ -460,13 +460,13 @@ class Where extends Base {
 	protected function generate_where( $column, $operator, $value, $type = 'AND' ) {
 		if ( is_array( $value ) ) {
 			$value = $this->esc_array( array_unique( $value ) );
-			$value = in_array( $operator, array( 'BETWEEN', 'NOT BETWEEN' ), true )
+			$value = in_array( $operator, [ 'BETWEEN', 'NOT BETWEEN' ], true )
 				? join( ' AND ', $value )
 				: '(' . join( ', ', $value ) . ')';
 		} elseif ( is_scalar( $value ) ) {
 			$value = $this->esc_value( $value );
 		}
 
-		return join( ' ', array( $type, $column, $operator, $value ) );
+		return join( ' ', [ $type, $column, $operator, $value ] );
 	}
 }
