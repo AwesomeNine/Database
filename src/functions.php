@@ -14,13 +14,13 @@ namespace Awesome9\Database;
  *
  * @since  1.0.0
  *
- * @param  string $name  A query unique id.
  * @param  string $table The table to run query against.
  * @param  string $alias The table alias.
+ * @param  string $name  A query unique id.
  * @return Query Query instance.
  */
-function select( $name, $table, $alias = '' ) {
-	return new Select( $name, $table, $alias );
+function select( $table, $alias = '', $name = '' ) {
+	return new Select( $table, $alias, $name );
 }
 
 /**
@@ -28,13 +28,13 @@ function select( $name, $table, $alias = '' ) {
  *
  * @since  1.0.0
  *
- * @param  string $name  A query unique id.
  * @param  string $table The table to run query against.
  * @param  string $alias The table alias.
+ * @param  string $name  A query unique id.
  * @return Query Query instance.
  */
-function insert( $name, $table, $alias = '' ) {
-	return new Insert( $name, $table, $alias );
+function insert( $table, $alias = '', $name = '' ) {
+	return new Insert( $table, $alias, $name );
 }
 
 /**
@@ -42,13 +42,13 @@ function insert( $name, $table, $alias = '' ) {
  *
  * @since  1.0.0
  *
- * @param  string $name  A query unique id.
  * @param  string $table The table to run query against.
  * @param  string $alias The table alias.
+ * @param  string $name  A query unique id.
  * @return Query Query instance.
  */
-function update( $name, $table, $alias = '' ) {
-	return new Update( $name, $table, $alias );
+function update( $table, $alias = '', $name = '' ) {
+	return new Update( $table, $alias, $name );
 }
 
 /**
@@ -56,13 +56,13 @@ function update( $name, $table, $alias = '' ) {
  *
  * @since  1.0.0
  *
- * @param  string $name  A query unique id.
  * @param  string $table The table to run query against.
  * @param  string $alias The table alias.
+ * @param  string $name  A query unique id.
  * @return Query Query instance.
  */
-function delete( $name, $table, $alias = '' ) {
-	return new Delete( $name, $table, $alias );
+function delete( $table, $alias = '', $name = '' ) {
+	return new Delete( $table, $alias, $name );
 }
 
 /**

@@ -61,12 +61,12 @@ class Base {
 	/**
 	 * The Constructor.
 	 *
-	 * @param  string $name  A query unique id.
 	 * @param  string $table The table to run query against.
 	 * @param  string $alias The table alias.
+	 * @param  string $name  A query unique id for caching results.
 	 * @return Query The current query.
 	 */
-	public function __construct( $name, $table, $alias = '' ) {
+	public function __construct( $table, $alias = '', $name = '' ) {
 		$this->table     = $table;
 		$this->name      = $name;
 		$this->alias     = $alias;

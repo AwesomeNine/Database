@@ -73,6 +73,6 @@ class TestJoinsQuery extends UnitTestCase {
 	 * @return [type] [description]
 	 */
 	protected function create_builder() {
-		return new \Awesome9\Database\Select( 'posts', 'posts' );
+		return new \Awesome9\Database\Select( 'posts' );
 	}
 }

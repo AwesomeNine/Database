@@ -90,7 +90,7 @@ class TestOrderbyQuery extends UnitTestCase {
 	 * @return [type] [description]
 	 */
 	protected function create_builder() {
-		return new \Awesome9\Database\Select( 'phpunit', 'phpunit' );
+		return new \Awesome9\Database\Select( 'phpunit' );
 	}
 
 	/**
