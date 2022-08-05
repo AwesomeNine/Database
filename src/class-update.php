@@ -18,6 +18,13 @@ use Awesome9\Database\Interfaces\Query;
 class Update extends Where implements Query {
 
 	/**
+	 * Query type
+	 *
+	 * @var string
+	 */
+	CONST TYPE = 'UPDATE';
+
+	/**
 	 * Translate the current query to a SQL update statement.
 	 *
 	 * @return string

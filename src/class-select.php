@@ -18,6 +18,13 @@ use Awesome9\Database\Interfaces\Query;
 class Select extends Joins implements Query {
 
 	/**
+	 * Query type
+	 *
+	 * @var string
+	 */
+	CONST TYPE = 'SELECT';
+
+	/**
 	 * Make a distinct selection
 	 *
 	 * @var bool
@@ -91,6 +98,15 @@ class Select extends Joins implements Query {
 		$this->limit( 1 );
 
 		return $this->processor->get_row( $this->get_query(), $output ); // WPCS: unprepared SQL ok.
+	}
+
+	/**
+	 * Get one column.
+	 *
+	 * @return mixed
+	 */
+	public function var() {
+		return $this->processor->get_var( $this->get_query() ); // WPCS: unprepared SQL ok.
 	}
 
 	/**

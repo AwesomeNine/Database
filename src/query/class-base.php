@@ -104,10 +104,13 @@ class Base {
 	/**
 	 * Execute query.
 	 *
+	 * @param  string $output (Optional) Any of ARRAY_A | ARRAY_N | OBJECT | OBJECT_K constants.
 	 * @return mixed
 	 */
-	public function execute() {
-		return $this->processor->query( $this->get_query() );
+	public function execute( $output = \ARRAY_N ) {
+		return 'SELECT' === static::TYPE
+			? $this->processor->get( $this->get_query(), $output )
+			: $this->processor->query( $this->get_query() );
 	}
 
 	/**

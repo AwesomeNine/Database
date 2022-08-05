@@ -36,6 +36,15 @@ class TestSelectQuery extends UnitTestCase {
 		$this->assertEquals( $expected, $query );
 	}
 
+	public function test_get_data() {
+		$builder = new \Awesome9\Database\Select( 'users' );
+		$data = $builder->select()->execute();
+		$this->assertNotEmpty( $data );
+
+		$count = $builder->selectCount( 'ID' )->var();
+		$this->assertEquals( 1, $count );
+	}
+
 	/**
 	 * MySql grammar tests
 	 */
@@ -43,9 +52,7 @@ class TestSelectQuery extends UnitTestCase {
 
 		$this->assertQueryTranslation(
 			'SELECT * FROM wptests_phpunit',
-			function( $table ) {
-
-			}
+			function( $table ) {}
 		);
 
 		$this->assertQueryTranslation(

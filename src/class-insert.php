@@ -18,6 +18,13 @@ use Awesome9\Database\Interfaces\Query;
 class Insert extends Base implements Query {
 
 	/**
+	 * Query type
+	 *
+	 * @var string
+	 */
+	CONST TYPE = 'INSERT';
+
+	/**
 	 * Set values for insert/update.
 	 *
 	 * @param  string|array $name  Key of pair.
@@ -54,9 +61,10 @@ class Insert extends Base implements Query {
 	/**
 	 * Execute query.
 	 *
+	 * @param  string $output (Optional) Any of ARRAY_A | ARRAY_N | OBJECT | OBJECT_K constants.
 	 * @return mixed
 	 */
-	public function execute() {
+	public function execute( $output = \ARRAY_N ) {
 		$this->processor->query( $this->get_query() );
 
 		return $this->processor->get_insert_id();

@@ -79,7 +79,7 @@ class Orderby extends Where {
 
 		foreach ( $columns as $key => $column ) {
 			if ( is_numeric( $key ) ) {
-				$this->orders[ $column ] = strtoupper( $direction );
+				$this->orders[ $column ] = strtoupper( (string) $direction );
 			} else {
 				$this->orders[ $key ] = strtoupper( $column );
 			}

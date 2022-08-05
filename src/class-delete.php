@@ -18,6 +18,13 @@ use Awesome9\Database\Interfaces\Query;
 class Delete extends Where implements Query {
 
 	/**
+	 * Query type
+	 *
+	 * @var string
+	 */
+	CONST TYPE = 'DELETE';
+
+	/**
 	 * Translate the current query to a SQL delete statement
 	 *
 	 * @return string
