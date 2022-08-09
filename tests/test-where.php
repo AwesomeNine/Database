@@ -9,6 +9,8 @@
 
 namespace Awesome9\Tests\Database;
 
+use Awesome9\Database\Expression;
+
 /**
  * TestWhereQuery class.
  */
@@ -197,6 +199,17 @@ class TestWhereQuery extends UnitTestCase {
 			'SELECT * FROM wptests_phpunit WHERE id NOT BETWEEN 10 AND 100',
 			function( $table ) {
 				$table->whereNotBetween( 'id', array( 10, 100 ) );
+			}
+		);
+	}
+
+	public function test_between_with_expression() {
+		$this->assertQueryTranslation(
+			'SELECT * FROM wptests_phpunit WHERE allowed_to_export = 0 AND created_at BETWEEN (CURDATE() - INTERVAL 1 MONTH ) AND CURDATE()',
+			function( $table ) {
+				$table
+					->where( 'allowed_to_export', 0 )
+					->whereBetween( 'created_at', [ new Expression( '(CURDATE() - INTERVAL 1 MONTH )' ), new Expression( 'CURDATE()' ) ] );
 			}
 		);
 	}
