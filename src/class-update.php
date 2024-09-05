@@ -22,7 +22,7 @@ class Update extends Where implements Query {
 	 *
 	 * @var string
 	 */
-	CONST TYPE = 'UPDATE';
+	const TYPE = 'UPDATE';
 
 	/**
 	 * Translate the current query to a SQL update statement.

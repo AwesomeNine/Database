@@ -61,18 +61,15 @@ class Base {
 	/**
 	 * The Constructor.
 	 *
-	 * @param  string $table The table to run query against.
-	 * @param  string $alias The table alias.
-	 * @param  string $name  A query unique id for caching results.
-	 * @return Query The current query.
+	 * @param string $table The table to run query against.
+	 * @param string $alias The table alias.
+	 * @param string $name  A query unique id for caching results.
 	 */
 	public function __construct( $table, $alias = '', $name = '' ) {
 		$this->table     = $table;
 		$this->name      = $name;
 		$this->alias     = $alias;
 		$this->processor = new WordPress();
-
-		return $this;
 	}
 
 	/**

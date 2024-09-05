@@ -1,63 +1,83 @@
 <?xml version="1.0"?>
-<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Sniffs for Awesome9 packages" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+<ruleset name="Awesome9">
+	<description>Awesome9 Coding Standards.</description>
 
-	<description>Custom set of rules to check for Awesome9 packages.</description>
+	<!-- PHPCS arguments: -->
+	<arg value="ps" />
+	<arg name="colors"/>
+	<arg name="parallel" value="20" />
+	<arg name="extensions" value="php"/>
+
+	<!-- Set files and paths: -->
+	<file>.</file>
 
 	<!-- Exclude paths -->
-	<exclude-pattern>*/languages/*</exclude-pattern>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
 	<exclude-pattern>*/tests/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>*/index.php</exclude-pattern>
 
-	<!-- Include the WordPress-Extra standard. -->
-	<rule ref="WordPress-Extra">
-		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
-		<exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
-		<exclude name="Generic.Arrays.DisallowShortArraySyntax" />
-		<exclude name="WordPress.PHP.DisallowShortTernary" />
+	<!-- PHPCompatibility configs: -->
+	<config name="testVersion" value="7.4-" />
+	<config name="minimum_supported_wp_version" value="5.4" />
+
+	<rule ref="PHPCompatibility">
+		<include-pattern>*\.php$</include-pattern>
+		<exclude-pattern>tests/</exclude-pattern>
 	</rule>
 
-	<!-- Let's also check that everything is properly documented. -->
-	<rule ref="WordPress-Docs"/>
-
-	<!-- Add in some extra rules from other standards. -->
-	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
-
-	<!-- Check for PHP cross-version compatibility. -->
-	<!--
-	To enable this, the PHPCompatibilityWP standard needs
-	to be installed.
-	See the readme for installation instructions:
-	https://github.com/PHPCompatibility/PHPCompatibilityWP
-	For more information, also see:
-	https://github.com/PHPCompatibility/PHPCompatibility
-	-->
-	<config name="testVersion" value="7.4-"/>
-	<rule ref="PHPCompatibilityWP"/>
-
-	<!--
-	To get the optimal benefits of using WPCS, we should add a couple of
-	custom properties.
-	Adjust the values of these properties to fit our needs.
-	For information on additional custom properties available, check out
-	the wiki:
-	https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties
-	-->
-	<config name="minimum_supported_wp_version" value="5.4"/>
+	<!-- Rules: -->
+    <rule ref="WordPress"/>
 
 	<rule ref="WordPress.WP.I18n">
 		<properties>
-			<property name="text_domain" type="array">
-				<element value="awesome9"/>
-			</property>
+			<property name="text_domain" type="array" value="awesome9" />
 		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions">
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals" />
 	</rule>
 
 	<rule ref="WordPress.NamingConventions.ValidHookName">
 		<properties>
-			<property name="additionalWordDelimiters" value="-/."/>
+			<property name="additionalWordDelimiters" value="-"/>
 		</properties>
 	</rule>
+
+	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
+		<exclude-pattern>includes/**/abstract-*.php</exclude-pattern>
+		<exclude-pattern>includes/**/interface-*.php</exclude-pattern>
+	</rule>
+
+	<!-- Disable disallow short arrays and enforce them: -->
+	<rule ref="WordPress-Extra">
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+	</rule>
+
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+
+	<!-- Elevate these rules to an error, so it gets printed on commit   -->
+    <rule ref="Generic.Formatting.MultipleStatementAlignment">
+        <type>error</type>
+    </rule>
+
+	<rule ref="Generic.CodeAnalysis.AssignmentInCondition">
+        <type>error</type>
+    </rule>
+
+	<rule ref="Universal.Operators.StrictComparisons">
+        <type>error</type>
+    </rule>
+
+	<rule ref="WordPress.PHP.StrictInArray">
+        <type>error</type>
+    </rule>
+
+	<!-- Method names MUST NOT be prefixed with a single underscore to indicate protected or private visibility. That is, an underscore prefix explicitly has no meaning. -->
+    <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+        <type>error</type>
+        <message>Method name "%s" must not be prefixed with an underscore to indicate visibility</message>
+    </rule>
 
 </ruleset>

@@ -22,7 +22,7 @@ class Select extends Joins implements Query {
 	 *
 	 * @var string
 	 */
-	CONST TYPE = 'SELECT';
+	const TYPE = 'SELECT';
 
 	/**
 	 * Make a distinct selection

@@ -22,7 +22,7 @@ class Delete extends Where implements Query {
 	 *
 	 * @var string
 	 */
-	CONST TYPE = 'DELETE';
+	const TYPE = 'DELETE';
 
 	/**
 	 * Translate the current query to a SQL delete statement

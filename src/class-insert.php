@@ -22,7 +22,7 @@ class Insert extends Base implements Query {
 	 *
 	 * @var string
 	 */
-	CONST TYPE = 'INSERT';
+	const TYPE = 'INSERT';
 
 	/**
 	 * Set values for insert/update.

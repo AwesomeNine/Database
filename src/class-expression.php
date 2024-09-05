@@ -11,6 +11,9 @@
 
 namespace Awesome9\Database;
 
+/**
+ * Expression class.
+ */
 class Expression {
 
 	/**
