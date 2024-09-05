@@ -14,13 +14,14 @@ namespace Awesome9\Database;
  *
  * @since  1.0.0
  *
- * @param  string $table The table to run query against.
- * @param  string $alias The table alias.
- * @param  string $name  A query unique id.
+ * @param string $table   The table to run query against.
+ * @param string $alias   (Optional) The table alias.
+ * @param array  $options (Optional) Query options.
+ *
  * @return Query Query instance.
  */
-function select( $table, $alias = '', $name = '' ) {
-	return new Select( $table, $alias, $name );
+function select( $table, $alias = '', $options = [] ) {
+	return new Select( $table, $alias, $options );
 }
 
 /**
@@ -28,13 +29,14 @@ function select( $table, $alias = '', $name = '' ) {
  *
  * @since  1.0.0
  *
- * @param  string $table The table to run query against.
- * @param  string $alias The table alias.
- * @param  string $name  A query unique id.
+ * @param string $table   The table to run query against.
+ * @param string $alias   (Optional) The table alias.
+ * @param array  $options (Optional) Query options.
+ *
  * @return Query Query instance.
  */
-function insert( $table, $alias = '', $name = '' ) {
-	return new Insert( $table, $alias, $name );
+function insert( $table, $alias = '', $options = [] ) {
+	return new Insert( $table, $alias, $options );
 }
 
 /**
@@ -42,13 +44,14 @@ function insert( $table, $alias = '', $name = '' ) {
  *
  * @since  1.0.0
  *
- * @param  string $table The table to run query against.
- * @param  string $alias The table alias.
- * @param  string $name  A query unique id.
+ * @param string $table   The table to run query against.
+ * @param string $alias   (Optional) The table alias.
+ * @param array  $options (Optional) Query options.
+ *
  * @return Query Query instance.
  */
-function update( $table, $alias = '', $name = '' ) {
-	return new Update( $table, $alias, $name );
+function update( $table, $alias = '', $options = [] ) {
+	return new Update( $table, $alias, $options );
 }
 
 /**
@@ -56,13 +59,14 @@ function update( $table, $alias = '', $name = '' ) {
  *
  * @since  1.0.0
  *
- * @param  string $table The table to run query against.
- * @param  string $alias The table alias.
- * @param  string $name  A query unique id.
+ * @param string $table   The table to run query against.
+ * @param string $alias   (Optional) The table alias.
+ * @param array  $options (Optional) Query options.
+ *
  * @return Query Query instance.
  */
-function delete( $table, $alias = '', $name = '' ) {
-	return new Delete( $table, $alias, $name );
+function delete( $table, $alias = '', $options = [] ) {
+	return new Delete( $table, $alias, $options );
 }
 
 /**

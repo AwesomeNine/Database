@@ -24,11 +24,11 @@ class Base {
 	protected $table = '';
 
 	/**
-	 * Query unique id.
+	 * Options.
 	 *
 	 * @var string
 	 */
-	protected $name = '';
+	protected $options = [];
 
 	/**
 	 * Table alias.
@@ -61,15 +61,24 @@ class Base {
 	/**
 	 * The Constructor.
 	 *
-	 * @param string $table The table to run query against.
-	 * @param string $alias The table alias.
-	 * @param string $name  A query unique id for caching results.
+	 * @param string $table   The table to run query against.
+	 * @param string $alias   (Optional) The table alias.
+	 * @param array  $options (Optional) Query options.
 	 */
-	public function __construct( $table, $alias = '', $name = '' ) {
+	public function __construct( $table, $alias = '', $options = [] ) {
 		$this->table     = $table;
-		$this->name      = $name;
+		$this->options   = $options;
 		$this->alias     = $alias;
 		$this->processor = new WordPress();
+	}
+
+	/**
+	 * Get the last executed query.
+	 *
+	 * @return string
+	 */
+	public function get_last_query() {
+		return $this->processor->last_query;
 	}
 
 	/**
@@ -93,7 +102,7 @@ class Base {
 	 */
 	public function get_table() {
 		return $this->wrap_alias(
-			$this->processor->wrap_table( $this->table ),
+			$this->options['no_table_prefix'] ? $this->table : $this->processor->wrap_table( $this->table ),
 			$this->alias
 		);
 	}
