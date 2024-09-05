@@ -21,7 +21,7 @@ class WordPress implements Processor {
 	 *
 	 * @var string
 	 */
-	private $last_query = '';
+	public $last_query = '';
 
 	/**
 	 * Prefix table.
